@@ -1,1 +1,1 @@
-# Seminar test
+# Seminar
