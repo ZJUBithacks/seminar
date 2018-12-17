@@ -12,10 +12,10 @@ Disclaimer: Code implementations here are purely for educational purposes. In ea
 |      |    Date    |   Speaker   |                  Title                   |
 | ---- | :--------: | :---------: | :--------------------------------------: |
 | 1    | 2018.10.18 | Qibing Li  | Bitcoin Academic Pedigree <br> Learning and Building a Blockchain System using Python|
-| 2    | 2018.10.25 | Tianyao Gao |  |
-| 3    | 2018.11.8 | Zhengjie Huang |       |
-| 4    |  2018.11.15  | Yan Chen |                            |
-| 5    | 2018.11.22  | Liang Xu |        |
-| 6    | 2018.11.29  | Zijie Liu |        |
-| 7    | 2018.12.6  | Yiping Chen |        |
-| 8    | 2018.12.20  | Yusheng Zhou |          |
+| 2    | 2018.10.25 | Tianyao Gao | Ethereum Smart Contracts <br> |
+| 3    | 2018.11.8 | Zhengjie Huang | Ethereum Architecture Overview <br>      |
+| 4    |  2018.11.15  | Yan Chen | Ethereum World State <br> MPT                           |
+| 5    | 2018.11.22  | Liang Xu | Blockstream Elements Sidechain <br>    |
+| 6    | 2018.11.29  | Zijie Liu | Learning Go by Examples <br>    |
+| 7    | 2018.12.6  | Yiping Chen | Cross-chain Techniques <br> Learning Cosmos-SDK and Tendermint consensus  engine |
+| 8    | 2018.12.20  | Yusheng Zhou |  Decentralized Storage System <br> IPFS Filecoin        |
