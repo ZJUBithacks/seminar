@@ -1,4 +1,11 @@
-Ethereum overview: [eth.md](./notes/eth.md)
+1. [Ethereum overview](./notes/eth.md)
+   * Ethereum Account
+   * Block Structure
+   * Merkle-Patricia-Tree
 
-Ethereum MPT:[mpt.md](./notes/mpt.md)
+2. [Ethereum MPT](./notes/mpt.md)
+   * Merkle Tree
+   * Trie
+   * Merkle-Patricia-Tree
+   * World State
 
