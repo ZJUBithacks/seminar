@@ -1,4 +1,4 @@
-# bitHacks 11.29技术分享
+# bitHacks 11.29
 
 Before run the code,if you use the command line, you need to get the packages used by the project by GO -GET command.
 
