@@ -11,7 +11,7 @@ Disclaimer: Code implementations here are purely for educational purposes. In ea
 ## Contents
 |      |    Date    |   Speaker   |                  Title                   |
 | ---- | :--------: | :---------: | :--------------------------------------: |
-| 1    | 2018.10.18 | Qibing Li  | Bitcoin Academic Pedigree <br> Learning and Building a Blockchain System using Python|
+| 1    | 2018.10.18 | [Qibing Li](https://github.com/QibingLee)  | [Bitcoin Academic Pedigree <br> Learning and Building a Blockchain System using Python](./1.bitcoin-academic-pedigree)|
 | 2    | 2018.10.25 | Tianyao Gao | Ethereum Smart Contracts <br> Solidity Dapp |
 | 3    | 2018.11.8 | Zhengjie Huang | Ethereum Architecture Overview <br> Uncle Mining|
 | 4    |  2018.11.15  | Yan Chen | Ethereum World State and MPT<br> State Trie |
