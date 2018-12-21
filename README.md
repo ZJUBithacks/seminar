@@ -11,11 +11,11 @@ Disclaimer: Code implementations here are purely for educational purposes. In ea
 ## Contents
 |      |    Date    |   Speaker   |                  Title                   |
 | ---- | :--------: | :---------: | :--------------------------------------: |
-| 1    | 2018.10.18 | [Qibing Li](https://github.com/QibingLee)  | Bitcoin Academic Pedigree <br> Building a Blockchain System Using Python|
+| 1    | 2018.10.18 | [Qibing Li](https://github.com/QibingLee)  | Bitcoin Academic Pedigree & Python Blockchain Implementation|
 | 2    | 2018.10.25 | [Tianyao Gao](https://github.com/tyGavinZJU) | Ethereum Smart Contracts & Solidity Dapp |
 | 3    | 2018.11.8 | [Zhengjie Huang](https://github.com/AwesomeHuang) | Ethereum Architecture Overview & Uncle Mining |
 | 4    |  2018.11.15  | [Yan Chen](https://github.com/C790266922) | Ethereum World State and Merkle Patricia Tree |
-| 5    | 2018.11.22  | Liang Xu | Sidechain Elements, Confidential Transaction and State Channel |
+| 5    | 2018.11.22  | Liang Xu | Sidechain Elements, Confidential Transaction & State Channel |
 | 6    | 2018.11.29  | [Zijie Liu](https://github.com/DankeGott) | Learning Go by Examples & Crawler System|
 | 7    | 2018.12.6  | [Yiping Chen](https://github.com/ChenypZJU) | Cosmos Cross-chain Protocols & Tendermint Consensus|
-| 8    | 2018.12.20  | [Yusheng Zhou](https://github.com/jasonzhouu) |  Decentralized Storage Systems -- IPFS and Filecoin |
+| 8    | 2018.12.20  | [Yusheng Zhou](https://github.com/jasonzhouu) |  Decentralized Storage Systems & IPFS and Filecoin |
