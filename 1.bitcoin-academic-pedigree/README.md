@@ -4,7 +4,9 @@ Nakamoto’s true leap of insight — the speciﬁc, complex way in which the un
 
 <div align=center><img width="90%" height="90%" src="2.png"/></div>
 
-I will discuss these technologies and build a simple blockchain system using Python. The main points are summarized as follows:
+I will discuss these technologies and build a simple blockchain system using Python. 
+
+The main points are summarized as follows:
 - Digital cash and double-spending problem;
 - The ledger and the global data structure;
 - Linked timestamp and Merkle Tree;
@@ -12,4 +14,4 @@ I will discuss these technologies and build a simple blockchain system using Pyt
 - Byzantine fault tolerance & Hashcash and sybil-resistant networks;
 - Proof-of-work, mining and digital currency incentive;
 - Fork and consensus (the longest chain selection).
-- [A Python-based blockchain system](./code).
+- A Python-based blockchain system, [[code]](./code).
