@@ -14,4 +14,4 @@ The main points are summarized as follows:
 - Byzantine fault tolerance & Hashcash and sybil-resistant networks;
 - Proof-of-work, mining and digital currency incentive;
 - Fork and consensus (the longest chain selection).
-- A Python-based blockchain system, [[code]](./code).
+- A Python-based blockchain system [[code]](./code).
