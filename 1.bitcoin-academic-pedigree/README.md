@@ -1,20 +1,15 @@
-1. [Ethereum overview](./notes/eth.md)
-   * Ethereum Account
-   * Block Structure
-   * Merkle-Patricia-Tree
+# Bitcoin Academic Pedigree
 
-2. [Ethereum MPT](./notes/mpt.md)
-   * Merkle Tree
-   * Trie
-   * Merkle-Patricia-Tree
-   * World State
+Nakamoto’s true leap of insight — the speciﬁc, complex way in which the underlying components are put together:
 
+<div align=center><img width="90%" height="90%" src="2.png"/></div>
 
-# Learning Go
-
-This time I will share the fundmental techology and the basic theory with you.
-And the main points are as follow:
-1. Advantages of Go over other languages;
-2. A brief talk about the basic syntax of Go;
-3. [Learning go by examples (goroutines, channels)](https://gobyexample.com).
-3. Sharing a Crawler example with Coroutine.
+I will discuss these technologies and build a simple blockchain system using Python. The main points are summarized as follows:
+- Digital cash and double-spending problem;
+- The ledger and the global data structure;
+- Linked timestamp and Merkle Tree;
+- Blockchain structure, transaction and script;
+- Byzantine fault tolerance & Hashcash and sybil-resistant networks;
+- Proof-of-work, mining and digital currency incentive;
+- Fork and consensus (the longest chain selection).
+- [A Python-based blockchain system](./code).
