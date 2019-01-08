@@ -1,6 +1,7 @@
-**Cosmos and Tendermint**  
-overview  
-Tendermint  
+# Cosmos and Tendermint
+Overview  
+Multi-token model  
+Tendermint
 ABCI  
 IBC  
 
