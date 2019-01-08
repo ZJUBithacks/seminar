@@ -1,4 +1,4 @@
-**Cosmos and Tendermint  
+**Cosmos and Tendermint**  
 overview  
 Tendermint  
 ABCI  
