@@ -42,7 +42,9 @@
     
   2. **交易奖励分配**  
   
-区块确认后，有奖励：ETH 1000，Proton 300。参与precommit验证者权益占总权益的80%，有出块者A，其权益占总权益的10%，而这其中只有20%是自己抵押的Atom，剩下的是其他用户委托的Atom，佣金为20%。有用户B将Atom委托给出块者A，委托的Atoms占A委托Atom的40%。所以用户A获得的奖励有：  
+　　区块确认后，有奖励：ETH 1000，Proton 300。参与precommit验证者权益占总权益的80%，有出块者A，其权益占总权益的10%，而这其中只有20%是自己抵押的Atom，剩下的是其他用户委托的Atom，佣金为20%。有用户B将Atom委托给出块者A，委托的Atoms占A委托Atom的40%。奖励主要分配为出块奖励（交给出块者分配）、税（上交community fund）和所有validator共享的奖励，假设税为2%其分配示意图为：  
+    !()[https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/%E4%BA%A4%E6%98%93%E5%A5%96%E5%8A%B1%E5%88%86%E9%85%8D%E7%A4%BA%E6%84%8F%E5%9B%BE.png]
+    在所以用户A获得的奖励有：  
 ```  
 　　出块奖励比例=0.01+0.04*80%=0.042  
     出块奖励：ETH 1000*0.042=42；Proton 300*0.042=12.6  
