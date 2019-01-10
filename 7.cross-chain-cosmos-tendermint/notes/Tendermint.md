@@ -3,7 +3,7 @@
 　　Tendermint是一个能够在不同机器上，安全一致复用的应用软件。Tendermint框架设计是将区块链应用与共识进行分离，其框架示意图如下图所示。Tendermint框架
 可分为Tendermint Core和ABCI (Application BlockChain Interface)两部分，其中Tendermint Core是Tendermint的核心，实现共识与数据传输；ABCI是
 Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用不同语言开发各自的区块链应用，无需考虑共识和网络传输的实现。  
-![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/tendermint%E6%A1%86%E6%9E%B6.jpg=300*300)　　
+![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/tendermint%E6%A1%86%E6%9E%B6%E7%A4%BA%E6%84%8F%E5%9B%BE.png)　　
 
 　　在本文中，会先介绍由tendermint搭建的区块链中的数据结构，再介绍tendermint框架中的tendermint core，其中包括tendermint的BPOS的共识过程、锁定机制以及PoLC等，最后将介绍tendermint core如何利用ABCI与应用进行交互。
  ## 数据结构  
@@ -36,7 +36,7 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
    以上是对Block区块包含数据的简要介绍，具体详见![tendermint:block](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/blockchain.md)  
    ### State  
    在Tendermint区块链中，交易执行结果、验证者、共识参数等并没有直接存储在区块block中，而是将其存储在了数据结构State，而State则存储在应用中。当tendermint core需要相应的参数时，通过ABCI接口向应用（application）获取这些信息。State的结构如下图所示：  
-   ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/state.jpg)  
+   ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/state.jpg?raw=true)  
    其具体参数解释可见![tendermint:state](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/state.md)  
    ### Block与State中数据联系  
    　　下图表示了Block和State中各数据之间的联系。Note:BlockID并不只有`Header`的Merkle Root。  
