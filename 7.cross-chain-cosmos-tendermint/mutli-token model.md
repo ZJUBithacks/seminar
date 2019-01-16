@@ -66,3 +66,6 @@
 ``` 
 其出块奖励分配比例示意图如下图所示：  
 ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/%E5%87%BA%E5%9D%97%E5%A5%96%E5%8A%B1%E5%88%86%E9%85%8D%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
+## refs  
+[1]. https://github.com/cosmos/cosmos/blob/master/Cosmos_Token_Model.pdf  
+[2]. https://blog.cosmos.network/economics-of-proof-of-stake-bridging-the-economic-system-of-old-into-the-new-age-of-blockchains-3f17824e91db
