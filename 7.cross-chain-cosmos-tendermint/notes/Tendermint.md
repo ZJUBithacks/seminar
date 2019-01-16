@@ -33,11 +33,11 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
    　`ProposerAddress`:当前区块打包者(proposer)的地址  
    此外，还有表示应用状态：  
    　`AppHash`：应用确认和执行上一区块返回的任意字节数组，表示应用状态，用于验证应用提供的merkle proofs。  
-   以上是对Block区块包含数据的简要介绍，具体详见![tendermint:block](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/blockchain.md)  
+   以上是对Block区块包含数据的简要介绍，具体详见[tendermint:block](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/blockchain.md)  
    ### State  
    在Tendermint区块链中，交易执行结果、验证者、共识参数等并没有直接存储在区块block中，而是将其存储在了数据结构State，而State则存储在应用中。当tendermint core需要相应的参数时，通过ABCI接口向应用（application）获取这些信息。State的结构如下图所示：  
    ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/state.jpg?raw=true)  
-   其具体参数解释可见![tendermint:state](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/state.md)  
+   其具体参数解释可见[tendermint:state](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/state.md)  
    ### Block与State中数据联系  
    　　下图表示了Block和State中各数据之间的联系。Note:BlockID并不只有`Header`的Merkle Root。  
        
@@ -72,12 +72,12 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
  3. 出块者出块优先权=出块优先权-总的投票权  
  4. 进入下一轮  
  ```  
- 以(p1,4),(p2,5),(p3,8),(p4,3)为例，其出块顺序为p3,p2,p1,p3,p4,p2...具体可见![proposer-selection-procedure-in-tendermint](https://github.com/tendermint/tendermint/blob/master/docs/spec/reactors/consensus/proposer-selection.md#proposer-selection-procedure-in-tendermint), ![Tendermint共识之Validator](https://blog.csdn.net/csds319/article/details/81137878)和![validator_set](https://github.com/tendermint/tendermint/blob/develop/types/validator_set.go)  
+ 以(p1,4),(p2,5),(p3,8),(p4,3)为例，其出块顺序为p3,p2,p1,p3,p4,p2...具体可见[proposer-selection-procedure-in-tendermint](https://github.com/tendermint/tendermint/blob/master/docs/spec/reactors/consensus/proposer-selection.md#proposer-selection-procedure-in-tendermint), [Tendermint共识之Validator](https://blog.csdn.net/csds319/article/details/81137878)和[validator_set](https://github.com/tendermint/tendermint/blob/develop/types/validator_set.go)  
  
  #### 共识过程  
  　　BPOS共识过程流程图可由下图表示：  
    ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/tendermint%E7%9A%84BPOS%E8%BF%87%E7%A8%8B%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)  
-   其详细步骤可见![Tendermint:byzantine-consensus-algorithm](https://github.com/tendermint/tendermint/blob/master/docs/spec/consensus/consensus.md#byzantine-consensus-algorithm)  
+   其详细步骤可见[Tendermint:byzantine-consensus-algorithm](https://github.com/tendermint/tendermint/blob/master/docs/spec/consensus/consensus.md#byzantine-consensus-algorithm)  
    以下将介绍保证BPOS的强一致性的两个概念：**锁定机制（Proof of Lock）**和**锁变化证明(Proof of Lock Change)**。   
  ##### 锁定机制PoL  
  
@@ -101,7 +101,7 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
 * JSONRPC over websockets  
 具体请见![Tendermint:RPC](https://tendermint.com/rpc/#introduction)  
 
-Tendermint P2P协议使用基于站对站协议（Station-to-Station Protocol）的认证加密方案，具体请见![Tendermint:p2p](https://github.com/tendermint/tendermint/tree/master/docs/spec/p2p).
+Tendermint P2P协议使用基于站对站协议（Station-to-Station Protocol）的认证加密方案，具体请见[Tendermint:p2p](https://github.com/tendermint/tendermint/tree/master/docs/spec/p2p).
  
  ## ABCI  
  ABCI（Application BlockChain Interface）是Tendermint与应用之间的接口，包含一系列函数，每个函数都有相应的请求和响应消息类型。Tendermint通过发送`Request`消息调用应用中的ABCI函数（methods）并获得相应的`Reponse`消息。所有消息类型都在protobuf文件中定义，这使开发者可以使用任何编程语言编写应用程序。官方给出的ABCI的示意图如下：  
@@ -119,7 +119,7 @@ Tendermint P2P协议使用基于站对站协议（Station-to-Station Protocol）
 　　　* `Info`: 返回应用State的相关信息，启动时tendermint与应用之间同步  
 　　　* `SetOption`: 设置非共识关键应用的特定选项  
 　　　* `Query`: 向应用查询当前和以前高度的相关数据，可返回merkle proof  
-开发者在开发应用时，必须实现相应编程语言的ABCI Server。在用go语言时，Tendermint支持ABCI的三种实现：In-process (Golang only)、ABCI-socket和GRPC。此外还有JavaScript, Python, C++和Java。详情请见![Tendermint: ABCI](https://tendermint.com/docs/spec/abci/)  
+开发者在开发应用时，必须实现相应编程语言的ABCI Server。在用go语言时，Tendermint支持ABCI的三种实现：In-process (Golang only)、ABCI-socket和GRPC。此外还有JavaScript, Python, C++和Java。详情请见[Tendermint: ABCI](https://tendermint.com/docs/spec/abci/)  
 在不同语言使用ABCI，需实现：  
 * 一个Socket Server  
 * 能够处理ABCI Message  
