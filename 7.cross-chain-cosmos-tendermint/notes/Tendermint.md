@@ -47,6 +47,13 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
  ## Tendermint Core  
  Tendermint Core主要实现共识和网络数据传输，其中共识采用拜占庭POS协议。接下来将详细介绍tendermint的共识过程。  
  ### 共识BPOS  
+ 　　与通过计算随机数来获取记账权的POW（Proof-of-Work）不同，POS（Proof-of-Stake）是计算持有占总币数的百分比以及占有币数的时间来决定记账权，节点持有的权益越多，获取记账权的难度越低。在Tendermint的BPOS（Bonded Proof-of-Stake）中，节点也是通过持有权益来获取记账权：节点通过抵押权益代币（Atom）成为验证者，其投票权与抵押代币的多少相关，抵押的代币占总抵押代币的比例越大，投票权越多，验证者可根据抵押权益代币的多少轮流出块。其共识过程主要有两个阶段：**预投票（prevote）**和**预确认（precommit）**，只有当某一区块得到>2/3权益的预确认投票，该区块才能被提交到链上。BPOS也属于拜占庭容错算法。其简要共识过程如下：  
+ 1) 通过各验证者的权益计算出块优先权，确定当前高度的出块者；  
+ 2) 选定的出块者提交区块；  
+ 3) 预投票: 各节点接收到区块之后，验证区块提交预投票(prevote);  
+ 4) 预确认：在接受到>2/3的prevote或超时之后，节点对同一区块提交预确认(precommit);  
+ 5) 当接收到对提交区块的>2/3的precommit之后，该区块被提交到链上，否则共识失败，进入下一轮共识过程。  
+ 从以上BPOS的简要共识过程可看出，BPOS的特点有：**强一致性**、**不允许分叉**、投票权与抵押代币相关。以下将详细介绍BPOS的共识机制。  
  #### 验证者Validator  
  * 用户可以通过抵押Atom、签署并提交BondTx交易成为验证者Validator。  
  * 验证者具有投票权，投票权大小与抵押的Atom多少相关。  
@@ -68,8 +75,23 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
  以(p1,4),(p2,5),(p3,8),(p4,3)为例，其出块顺序为p3,p2,p1,p3,p4,p2...具体可见![proposer-selection-procedure-in-tendermint](https://github.com/tendermint/tendermint/blob/master/docs/spec/reactors/consensus/proposer-selection.md#proposer-selection-procedure-in-tendermint), ![Tendermint共识之Validator](https://blog.csdn.net/csds319/article/details/81137878)和![validator_set](https://github.com/tendermint/tendermint/blob/develop/types/validator_set.go)  
  
  #### 共识过程  
+ 　　BPOS共识过程流程图可由下图表示：  
+   ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/tendermint%E7%9A%84BPOS%E8%BF%87%E7%A8%8B%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)  
+   其详细步骤可见![Tendermint:byzantine-consensus-algorithm](https://github.com/tendermint/tendermint/blob/master/docs/spec/consensus/consensus.md#byzantine-consensus-algorithm)  
+   以下将介绍保证BPOS的强一致性的两个概念：**锁定机制（Proof of Lock）**和**锁变化证明(Proof of Lock Change)**。   
+ ##### 锁定机制PoL  
  
- #### 锁定条件
+ 一旦验证者预确认(precommit)了某一个区块，该验证者锁定在这区块上，然后：  
+ * 该验证者必须对锁定的区块进行预投票（在之后轮数）  
+ * 如果之后轮数中有polka证明（超过三分之二的验证者预先投票给同一个区块，也可认为是Proof of Lock Change，PoLC），该验证者只能解锁并验证新区块  
+ ##### 锁变化证明PoLC  
+　　 一个包含超过2/3的对应于处在某一高度某一轮次提交的特定区块或者<nil>（空区块）的prevote的集合，称为锁变化证明(Proof of Lock Change, PoLC)。PoLC相当于解开锁定机制PoL的一把钥匙，将验证者与被锁定的区块解锁，避免由于验证者被锁在不同区块上导致共识无法继续的情况。锁定机制与锁变化证明在共识过程中的作用可由下图说明，假设：  
+ * 验证者1~9和X的抵押代币一致，即各验证者的投票权一致；  
+ * 验证者8、9和X是恶意节点
+ ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/PoLC%E5%92%8CPoL%E7%A4%BA%E6%84%8F%E5%9B%BE.png)  
+ 上图中，验证者1和2在第R轮与区块A进行所锁定，所以在第R+1轮时验证者将预投票投给了区块A。同时在第R+1轮有PoLC。到了第R+2轮，验证者1和2与区块A解锁，将预投票投给了区块B。  
+
+
  
  ### 网络  
  
