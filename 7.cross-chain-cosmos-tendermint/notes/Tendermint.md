@@ -12,27 +12,27 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
  　　在tendermint中，Block结构如下图所示。  
    ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/block.jpg)  
    在`Header`中，记录当前区块基本信息的有:  
-   `Version`: 包括app version和tendermint version  
-   `ChainID`: 区块链名称  
-   `Height`:该区块所属高度  
-   `Time`:出块时间  
-   `NumTxs`：当前区块打包的交易数  
-   `TotalTxs`:该区块之前所有区块（包括当前区块）打包的交易数  
+   　`Version`: 包括app version和tendermint version  
+   　`ChainID`: 区块链名称  
+   　`Height`:该区块所属高度  
+   　`Time`:出块时间  
+   　`NumTxs`：当前区块打包的交易数  
+   　`TotalTxs`:该区块之前所有区块（包括当前区块）打包的交易数  
    同时也记录了前一区块的信息：  
-   `LastBlockID`:前一区块的BlockID,包括了前一区块的header的merkle根hash值以及包括了上一区块序列化分块的merkle根hash值  
+   　`LastBlockID`:前一区块的BlockID,包括了前一区块的header的merkle根hash值以及包括了上一区块序列化分块的merkle根hash值  
    还有关于前一区块的确认和执行结果：  
-   `LastCommitHash`:validator set关于上一区块的投票`LastCommot`的merkle根hash值（Simple Merkle root）  
-   `LastResultHash`:上一区块交易执行后结果的merkle根hash值  
+  　 `LastCommitHash`:validator set关于上一区块的投票`LastCommot`的merkle根hash值（Simple Merkle root）  
+  　 `LastResultHash`:上一区块交易执行后结果的merkle根hash值  
    关于共识的相关信息：  
-   `ValidatorsHash`:当前区块的验证者集merkle根hash值  
-   `NextValidatorsHash`:下一区块的验证者集merkle根hash值  
-   `ConsensusHash`:当前区块amino编码的共识参数的hash值  
+   　`ValidatorsHash`:当前区块的验证者集merkle根hash值  
+   　`NextValidatorsHash`:下一区块的验证者集merkle根hash值  
+   　`ConsensusHash`:当前区块amino编码的共识参数的hash值  
    关于当前区块内容的有：  
-   `EvidenceHash`:记录当前区块中验证者恶意行为的Evidence的merkle根hash值  
-   `DataHash`：当前区块打包交易的merkle根hash值  
-   `ProposerAddress`:当前区块打包者(proposer)的地址  
+   　`EvidenceHash`:记录当前区块中验证者恶意行为的Evidence的merkle根hash值  
+   　`DataHash`：当前区块打包交易的merkle根hash值  
+   　`ProposerAddress`:当前区块打包者(proposer)的地址  
    此外，还有表示应用状态：  
-   `AppHash`：应用确认和执行上一区块返回的任意字节数组，表示应用状态，用于验证应用提供的merkle proofs。  
+   　`AppHash`：应用确认和执行上一区块返回的任意字节数组，表示应用状态，用于验证应用提供的merkle proofs。  
    以上是对Block区块包含数据的简要介绍，具体详见![tendermint:block](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/blockchain.md)  
    ### State  
    在Tendermint区块链中，交易执行结果、验证者、共识参数等并没有直接存储在区块block中，而是将其存储在了数据结构State，而State则存储在应用中。当tendermint core需要相应的参数时，通过ABCI接口向应用（application）获取这些信息。State的结构如下图所示：  
