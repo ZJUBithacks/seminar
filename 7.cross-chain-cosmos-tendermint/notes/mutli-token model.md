@@ -6,10 +6,10 @@
 ## staking token: Atom  
 　　在cosmos hub中，Atom作为权益代币，主要用于抵押，可通过区块增发获得。  
 　　用户通过抵押自己的和被委托的Atom成为验证者，其抵押的Atom总量就是其股权。验证者参与共识过程，可轮流出块，具有投票权。验证者可通过交易费和区块奖励获得收益，其抵押的Atom占总抵押Atom的比例就是其获得的收益比例占收益的比例。其他用户（委托人）也可以通过将自己的Atom委托给其他用户，通过委托抵押的Atom来获取相应的收益，同时支付给委托用户一定比例的佣金。  
-　　为了激励用户将手中的Atom进行抵押，Atom具有持续的通胀率。Atom的总量会随着时间进行增长，其通胀率是基于Atom的供应总量。Atom的持有者只有通过抵押才能获得新分发的Atom，而未抵押的Atom会由于通货膨胀而相应地“贬值”了。由此激励用户将Atom进行抵押。在cosmos-sdk中，模块Inflation负责通胀率的计算，其通胀率按小时变化，目标是使抵押代币与未抵押代币的比率保持在67%左右，同时也限制了其通胀率变化范围，具体可参见![inflation in cosmos-sdk:end_block.md](https://github.com/cosmos/cosmos-sdk/blob/develop/docs/spec/inflation/end_block.md)。   
+　　为了激励用户将手中的Atom进行抵押，Atom具有持续的通胀率。Atom的总量会随着时间进行增长，其通胀率是基于Atom的供应总量。Atom的持有者只有通过抵押才能获得新分发的Atom，而未抵押的Atom会由于通货膨胀而相应地“贬值”了。由此激励用户将Atom进行抵押。在cosmos-sdk中，模块Inflation负责通胀率的计算，其通胀率按小时变化，目标是使抵押代币与未抵押代币的比率保持在67%左右，同时也限制了其通胀率变化范围，具体可参见[inflation in cosmos-sdk:end_block.md](https://github.com/cosmos/cosmos-sdk/blob/develop/docs/spec/inflation/end_block.md)。   
 　　对抵押Atom进行激励，使得Atom的流通性降低，也是用户获得大份额股权（stake）代价增加，进一步增强了网络的安全性。
 ## fee token: Proton
-　　Proton是cosmos提出的原生费用货币，相比Atom有着更好的流动性和交易速度，可在Cosmos Hub连接的所有分区之间任意转移。Proton可通过区块奖励获得，每个小时Proton的区块奖励为500 Protons，其通胀率近乎0。同时Proton也可以一次以太坊账户状态的硬舀取（Hard Spoon）来分发，数量与 Ether 的数量相等。具体可参见![cosmos fee token: Proton](https://medium.com/tendermint/proposed-cosmos-fee-token-codename-photon-e0927daf5c4c)
+　　Proton是cosmos提出的原生费用货币，相比Atom有着更好的流动性和交易速度，可在Cosmos Hub连接的所有分区之间任意转移。Proton可通过区块奖励获得，每个小时Proton的区块奖励为500 Protons，其通胀率近乎0。同时Proton也可以一次以太坊账户状态的硬舀取（Hard Spoon）来分发，数量与 Ether 的数量相等。具体可参见[cosmos fee token: Proton](https://medium.com/tendermint/proposed-cosmos-fee-token-codename-photon-e0927daf5c4c)
 ## many fee tokens  
 　　在Cosmos Hub中，交易费并不强制使用某一单一代币，允许使用多种类型代币。用户可以使用自己所拥有的代币支付交易费，而不用转换成规定的代币，这就降低了跨区交易的门槛。在Cosmos Hub创建之初，其费用代币白名单只有Atom和Proton，随着各个分区Zone介入Hub，其费用代币白名单成员也会相应增加。  
 　　由于使用多种交易代币，在区块打包时，交易的排序并不是根据具体交易费大小，而是根据transaction fee per resources进行排序，如BTC每字节、“gas price”（单个gas的ETH）。但在cosmos Hub中，采用的是根据计算量和存储花费预估各自交易类型/代币的权重，再进行相应的计算排序。为了保证Hub的去中心化，每个验证者对于各个类型的代币权重并不进行统一。验证者在打包区块时可根据自己的权重设定，对交易进行排序打包。  
@@ -17,7 +17,7 @@
      ```  
      出块者比例=0.01+0.04*(投precommit验证者中的权益/抵押总权益)  
      ```  
-　　委托者在获得收益的同时要支付一定的佣金给被委托人。在这一部分由cosmos-sdk的distribution模块处理，具体详见![distribution in cosmos-sdk](https://github.com/cosmos/cosmos-sdk/blob/develop/docs/spec/distribution/end_block.md)。
+　　委托者在获得收益的同时要支付一定的佣金给被委托人。在这一部分由cosmos-sdk的distribution模块处理，具体详见[distribution in cosmos-sdk](https://github.com/cosmos/cosmos-sdk/blob/develop/docs/spec/distribution/end_block.md)。
   
 ## examples  
 1. **交易排序**  
