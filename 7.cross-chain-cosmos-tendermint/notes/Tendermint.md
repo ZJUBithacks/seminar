@@ -99,7 +99,8 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
 * URI over HTTP
 * JSONRPC over HTTP
 * JSONRPC over websockets  
-具体请见![Tendermint:RPC](https://tendermint.com/rpc/#introduction)
+具体请见![Tendermint:RPC](https://tendermint.com/rpc/#introduction)  
 
+Tendermint P2P协议使用基于站对站协议（Station-to-Station Protocol）的认证加密方案，具体请见![Tendermint:p2p](https://github.com/tendermint/tendermint/tree/master/docs/spec/p2p).
  
  ## ABCI
