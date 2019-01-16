@@ -89,7 +89,7 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
  * 验证者1~9和X的抵押代币一致，即各验证者的投票权一致；  
  * 验证者8、9和X是恶意节点
  ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/PoLC%E5%92%8CPoL%E7%A4%BA%E6%84%8F%E5%9B%BE.png)  
- 上图中，验证者1和2在第R轮与区块A进行所锁定，所以在第R+1轮时验证者将预投票投给了区块A。同时在第R+1轮有PoLC。到了第R+2轮，验证者1和2与区块A解锁，将预投票投给了区块B。  
+ 上图中，验证者1和2在第R轮与区块A进行所锁定，所以在第R+1轮时验证者将预投票投给了区块A。同时在第R+1轮有PoLC。到了第R+2轮，验证者1和2与区块A解锁，将预投票投给了区块B。如果没有PoLC使验证者1和2对区块A进行解锁，区块B的提交将取决于恶意节点，使得共识无法进行。  
 
 
  
