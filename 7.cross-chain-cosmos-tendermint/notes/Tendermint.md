@@ -103,4 +103,31 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
 
 Tendermint P2P协议使用基于站对站协议（Station-to-Station Protocol）的认证加密方案，具体请见![Tendermint:p2p](https://github.com/tendermint/tendermint/tree/master/docs/spec/p2p).
  
- ## ABCI
+ ## ABCI  
+ ABCI（Application BlockChain Interface）是Tendermint与应用之间的接口，包含一系列函数，每个函数都有相应的请求和响应消息类型。Tendermint通过发送`Request`消息调用应用中的ABCI函数（methods）并获得相应的`Reponse`消息。所有消息类型都在protobuf文件中定义，这使开发者可以使用任何编程语言编写应用程序。官方给出的ABCI的示意图如下：  
+![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/ABCI.png)  
+在ABCI中，ABCI连接根据ABCI函数被分为三个独立的ABCI连接（ABCI connection）： 
+* `Consensus Connection`:由共识协议驱动，并负责区块执行  
+　　　* `InitChain`:在区块链创建时调用，向应用传送相应的初始验证者集及相应的共识参数  
+　　　* `BeginBlock`:区块交易开始传输前调用，向应用传输区块hash值及区块头（Header）  
+　　　* `DeliverTx`:向区块传输交易，返回交易执行结果相关参数  
+　　　* `EndBlock`:表示区块传输结束，在所有交易传输之后、区块提交（commit）之前调用，返回验证者集更新、共识参数更新相关参数  
+　　　* `Commit`:确认区块，返回应用保存的State的merkle root hash，可存于下一区块头  
+* `Mempool Connection`: 在交易进入mempool之前（传输或打包进区块之前）验证交易  
+　　　* `CheckTx`:验证交易签名或账户余额等，并不执行交易  
+* `Info Connection`: 初始化和用户查询  
+　　　* `Info`: 返回应用State的相关信息，启动时tendermint与应用之间同步  
+　　　* `SetOption`: 设置非共识关键应用的特定选项  
+　　　* `Query`: 向应用查询当前和以前高度的相关数据，可返回merkle proof  
+开发者在开发应用时，必须实现相应编程语言的ABCI Server。在用go语言时，Tendermint支持ABCI的三种实现：In-process (Golang only)、ABCI-socket和GRPC。此外还有JavaScript, Python, C++和Java。详情请见![Tendermint: ABCI](https://tendermint.com/docs/spec/abci/)  
+在不同语言使用ABCI，需实现：  
+* 一个Socket Server  
+* 能够处理ABCI Message  
+* 实现区块链应用接口（ABCI）
+
+## Refs  
+[1]. https://github.com/tendermint/tendermint/tree/develop/docs  
+[2]. https://cosmos.network/docs/resources/whitepaper-zh-CN.html#tendermint  
+[3]. https://mp.weixin.qq.com/s?__biz=MzUyMjg0MzIxMA==&mid=2247483679&idx=1&sn=1fadfa95a266e199c3f2966c2decfbae&chksm=f9c4e43aceb36d2c19f07450f98a2938ef345aeb454f0f668057e66a89adb0dfda91910cccd9&scene=21#wechat_redirect
+
+ 
