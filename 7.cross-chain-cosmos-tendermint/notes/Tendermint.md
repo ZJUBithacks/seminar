@@ -3,14 +3,20 @@
 　　Tendermint是一个能够在不同机器上，安全一致复用的应用软件。Tendermint框架设计是将区块链应用与共识进行分离，其框架示意图如下图所示。Tendermint框架
 可分为Tendermint Core和ABCI (Application BlockChain Interface)两部分，其中Tendermint Core是Tendermint的核心，实现共识与数据传输；ABCI是
 Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用不同语言开发各自的区块链应用，无需考虑共识和网络传输的实现。  
-![](./pictures/tendermint%E6%A1%86%E6%9E%B6%E7%A4%BA%E6%84%8F%E5%9B%BE.png)　　
+<div align= center>  
+  <img width="300" height="300" src="./pictures/tendermint%E6%A1%86%E6%9E%B6%E7%A4%BA%E6%84%8F%E5%9B%BE.png"/>  
+</div>　　
+　　
 
 　　在本文中，会先介绍由tendermint搭建的区块链中的数据结构，再介绍tendermint框架中的tendermint core，其中包括tendermint的BPOS的共识过程、锁定机制以及PoLC等，最后将介绍tendermint core如何利用ABCI与应用进行交互。
  ## 数据结构  
  ### Block  
  
  　　在tendermint中，Block结构如下图所示。  
-   ![](./pictures/block.jpg)  
+<div align= center>  
+  <img src="./pictures/block.jpg"/>  
+</div>  
+
    在`Header`中，记录当前区块基本信息的有:  
    　`Version`: 包括app version和tendermint version  
    　`ChainID`: 区块链名称  
@@ -35,8 +41,11 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
    　`AppHash`：应用确认和执行上一区块返回的任意字节数组，表示应用状态，用于验证应用提供的merkle proofs。  
    以上是对Block区块包含数据的简要介绍，具体详见[tendermint:block](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/blockchain.md)  
    ### State  
-   在Tendermint区块链中，交易执行结果、验证者、共识参数等并没有直接存储在区块block中，而是将其存储在了数据结构State，而State则存储在应用中。当tendermint core需要相应的参数时，通过ABCI接口向应用（application）获取这些信息。State的结构如下图所示：  
-   ![](./pictures/state.jpg?raw=true)  
+   在Tendermint区块链中，交易执行结果、验证者、共识参数等并没有直接存储在区块block中，而是将其存储在了数据结构State，而State则存储在应用中。当tendermint core需要相应的参数时，通过ABCI接口向应用（application）获取这些信息。State的结构如下图所示:  
+<div align= center>  
+  <img src="./pictures/state.jpg?raw=true"/>  
+</div>  
+  
    其具体参数解释可见[tendermint:state](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/state.md)  
    ### Block与State中数据联系  
    　　下图表示了Block和State中各数据之间的联系。Note:BlockID并不只有`Header`的Merkle Root。  
@@ -64,7 +73,7 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
  * 验证者的更改将在更改交易所属区块之后的第二个区块生效。
 
  #### 成为出块者Proposer  
- 验证者根据投票权的比例轮流成为出块者，投票权votingPower越大，其成为出块者的频率越高。验证者出块优先权的计算方式为： 
+ 　　验证者根据投票权的比例轮流成为出块者，投票权votingPower越大，其成为出块者的频率越高。验证者出块优先权的计算方式为： 
  ```  
  在R轮：  
  1. 验证者出块优先权=（R-1）轮出块优先权+投票权  
@@ -81,7 +90,7 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
    以下将介绍保证BPOS的强一致性的两个概念：**锁定机制（Proof of Lock）**和**锁变化证明(Proof of Lock Change)**。   
  ##### 锁定机制PoL  
  
- 一旦验证者预确认(precommit)了某一个区块，该验证者锁定在这区块上，然后：  
+ 　　一旦验证者预确认(precommit)了某一个区块，该验证者锁定在这区块上，然后：  
  * 该验证者必须对锁定的区块进行预投票（在之后轮数）  
  * 如果之后轮数中有polka证明（超过三分之二的验证者预先投票给同一个区块，也可认为是Proof of Lock Change，PoLC），该验证者只能解锁并验证新区块  
  ##### 锁变化证明PoLC  
@@ -99,14 +108,17 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
 * URI over HTTP
 * JSONRPC over HTTP
 * JSONRPC over websockets  
-具体请见![Tendermint:RPC](https://tendermint.com/rpc/#introduction)  
+　　具体请见![Tendermint:RPC](https://tendermint.com/rpc/#introduction)  
 
-Tendermint P2P协议使用基于站对站协议（Station-to-Station Protocol）的认证加密方案，具体请见[Tendermint:p2p](https://github.com/tendermint/tendermint/tree/master/docs/spec/p2p).
+　　Tendermint P2P协议使用基于站对站协议（Station-to-Station Protocol）的认证加密方案，具体请见[Tendermint:p2p](https://github.com/tendermint/tendermint/tree/master/docs/spec/p2p).
  
  ## ABCI  
- ABCI（Application BlockChain Interface）是Tendermint与应用之间的接口，包含一系列函数，每个函数都有相应的请求和响应消息类型。Tendermint通过发送`Request`消息调用应用中的ABCI函数（methods）并获得相应的`Reponse`消息。所有消息类型都在protobuf文件中定义，这使开发者可以使用任何编程语言编写应用程序。官方给出的ABCI的示意图如下：  
-![](./pictures/ABCI.png)  
-在ABCI中，ABCI连接根据ABCI函数被分为三个独立的ABCI连接（ABCI connection）： 
+ 　　ABCI（Application BlockChain Interface）是Tendermint与应用之间的接口，包含一系列函数，每个函数都有相应的请求和响应消息类型。Tendermint通过发送`Request`消息调用应用中的ABCI函数（methods）并获得相应的`Reponse`消息。所有消息类型都在protobuf文件中定义，这使开发者可以使用任何编程语言编写应用程序。官方给出的ABCI的示意图如下：  
+<div align= center>  
+  <img width="500" height="450" src="./pictures/ABCI.png"/>  
+</div>  
+  
+　　在ABCI中，ABCI连接根据ABCI函数被分为三个独立的ABCI连接（ABCI connection）： 
 * `Consensus Connection`:由共识协议驱动，并负责区块执行  
 　　　* `InitChain`:在区块链创建时调用，向应用传送相应的初始验证者集及相应的共识参数  
 　　　* `BeginBlock`:区块交易开始传输前调用，向应用传输区块hash值及区块头（Header）  
@@ -119,7 +131,7 @@ Tendermint P2P协议使用基于站对站协议（Station-to-Station Protocol）
 　　　* `Info`: 返回应用State的相关信息，启动时tendermint与应用之间同步  
 　　　* `SetOption`: 设置非共识关键应用的特定选项  
 　　　* `Query`: 向应用查询当前和以前高度的相关数据，可返回merkle proof  
-开发者在开发应用时，必须实现相应编程语言的ABCI Server。在用go语言时，Tendermint支持ABCI的三种实现：In-process (Golang only)、ABCI-socket和GRPC。此外还有JavaScript, Python, C++和Java。详情请见[Tendermint: ABCI](https://tendermint.com/docs/spec/abci/)  
+　　开发者在开发应用时，必须实现相应编程语言的ABCI Server。在用go语言时，Tendermint支持ABCI的三种实现：In-process (Golang only)、ABCI-socket和GRPC。此外还有JavaScript, Python, C++和Java。详情请见[Tendermint: ABCI](https://tendermint.com/docs/spec/abci/)  
 在不同语言使用ABCI，需实现：  
 * 一个Socket Server  
 * 能够处理ABCI Message  
