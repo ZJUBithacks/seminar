@@ -2,7 +2,7 @@
 
 ## overview
   　　在权益证明POS区块链中，代币主要有抵押和交易两种功能。但在单一代币模型中，代币流动性的增加会导致网络安全性降低。为了避免该情况，Cosmos团队在Cosmos Hub中采用了多代币模型multi-token model，其代币关系示意图由下图表示。由下图可知，在Cosmos的多代币模型中，代币的抵押和交易功能分离，其抵押功能由权益代币（staking token）Atom实现，而费用代币（fee tokens）则采用多种代币，其中也包括了原生费用代币Proton。  
-    ![多代币模型示意图]( https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/multi_token_model.png)
+    ![多代币模型示意图]( ./pictures/multi_token_model.png)
 ## staking token: Atom  
 　　在cosmos hub中，Atom作为权益代币，主要用于抵押，可通过区块增发获得。  
 　　用户通过抵押自己的和被委托的Atom成为验证者，其抵押的Atom总量就是其股权。验证者参与共识过程，可轮流出块，具有投票权。验证者可通过交易费和区块奖励获得收益，其抵押的Atom占总抵押Atom的比例就是其获得的收益比例占收益的比例。其他用户（委托人）也可以通过将自己的Atom委托给其他用户，通过委托抵押的Atom来获取相应的收益，同时支付给委托用户一定比例的佣金。  
@@ -48,7 +48,7 @@
     出块奖励：ETH 1000*0.042=42；Proton 300*0.042=12.6   
 ```    
 假设税为2%其分配示意图为：   
-  ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/%E4%BA%A4%E6%98%93%E5%A5%96%E5%8A%B1%E5%88%86%E9%85%8D%E7%A4%BA%E6%84%8F%E5%9B%BE.png)  
+  ![](./pictures/%E4%BA%A4%E6%98%93%E5%A5%96%E5%8A%B1%E5%88%86%E9%85%8D%E7%A4%BA%E6%84%8F%E5%9B%BE.png)  
   
  在所以用户A获得的奖励有：  
 ```  
@@ -65,7 +65,7 @@
     用户B获得的奖励：ETH 23.52*40%=9.048；Proton 7.056*40%=2.8224  
 ``` 
 其出块奖励分配比例示意图如下图所示：  
-![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/%E5%87%BA%E5%9D%97%E5%A5%96%E5%8A%B1%E5%88%86%E9%85%8D%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
+![](./pictures/%E5%87%BA%E5%9D%97%E5%A5%96%E5%8A%B1%E5%88%86%E9%85%8D%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
 ## refs  
 [1]. https://github.com/cosmos/cosmos/blob/master/Cosmos_Token_Model.pdf  
 [2]. https://blog.cosmos.network/economics-of-proof-of-stake-bridging-the-economic-system-of-old-into-the-new-age-of-blockchains-3f17824e91db
