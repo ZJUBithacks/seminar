@@ -1,41 +1,41 @@
 # Overview
-Cosmos是由许多独立区块链组成的区块链网络。网络中的第一条区块链是Cosmos Hub，其他区块链被称为Zone（分区）。Hub与分区Zone之间通过IBC协议进行通信。对于无法兼容IBC协议的区块链，cosmos也提出了Peg Zone，将其作为中继，实现cosmos网络与无法兼容IBC协议区块链的通信。其cosmos网络示意图如下：    
+　　Cosmos是由许多独立区块链组成的区块链网络。网络中的第一条区块链是Cosmos Hub，其他区块链被称为Zone（分区）。Hub与分区Zone之间通过IBC协议进行通信。对于无法兼容IBC协议的区块链，cosmos也提出了Peg Zone，将其作为中继，实现cosmos网络与无法兼容IBC协议区块链的通信。其cosmos网络示意图如下：    
 <div align=center>  
   <img width="800" height="480" src="./pictures/cosmos%E7%BD%91%E7%BB%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg"/>  
 </div>  
 
-其中，Hub具有的功能有：  
+　　其中，Hub具有的功能有：  
 * 可通过区块链间通信（IBC）协议与Zone进行通信  
 * 负责记录每个分区的代币总数，进行跨区代币转移  
 * 可通过链接其他分区来实现扩展  
 * 可将其他分区与故障分区隔离  
 * 采用多代币模型，将权益代币与费用代币进行分离，接受多种交易代币
   
-而作为独立的区块链，Zone也具有：  
+　　而作为独立的区块链，Zone也具有：  
 * 具有独立的共识算法  
 * 根据每个Zone的价值和利益维护主权  
 * 可通过hub与其他Zone进行通信
   
-Peg Zone实现了Hub与不兼容IBC协议区块链间的通信，目前还未开发完成。到目前为止，其特点有：  
+　　Peg Zone实现了Hub与不兼容IBC协议区块链间的通信，目前还未开发完成。到目前为止，其特点有：  
 * 维护区块链用户信息、实现跨链交易、交易查询  
 * 通过IBC协议与Hub进行通信  
 * 通过witness对区块链进行监听  
 * 通过relayer进行交易转发
 
-为了构建cosmos网络，cosmos团队提供了Cosmos-sdk和tendermint框架，其架构示意图为：  
+　　为了构建cosmos网络，cosmos团队提供了Cosmos-sdk和tendermint框架，其架构示意图为：  
  
 <div align= center>  
   <img width="400" height="400" src="./pictures/cosmos%E8%8A%82%E7%82%B9%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg"/>  
 </div>  
   
-由上图可知，cosmos-sdk是cosmos区块链的开发框架，为区块链开发者提供通用的功能模块，如ibc（跨链通信）、staking（抵押）、governance（治理）等。  
+　　由上图可知，cosmos-sdk是cosmos区块链的开发框架，为区块链开发者提供通用的功能模块，如ibc（跨链通信）、staking（抵押）、governance（治理）等。  
 而tendermint则是提供了底层的共识和网络。Tendermint采用BPOS（Bonded Proof Of Stake）算法，其主要特点有：  
 * 通过抵押代币成为验证者，其投票权大小与抵押代币数目相关  
 * 验证者轮流进行打包出块，其被选中成为出块者的频率与抵押权益正相关  
 * 锁定机制和锁变化证明PoLC保证区块链具有强一致性，不会出现分叉  
   
-Tendermint通过ABCI接口（Application BlockChain Interface）与区块链应用进行通信。所有消息类型都在protobuf文件中定义，这使开发者可以使用任何编程语言编写应用程序。  
-下面将从以下几个方面对Cosmos和Tendermint进行详细介绍：  
+　　Tendermint通过ABCI接口（Application BlockChain Interface）与区块链应用进行通信。所有消息类型都在protobuf文件中定义，这使开发者可以使用任何编程语言编写应用程序。  
+　　下面将从以下几个方面对Cosmos和Tendermint进行详细介绍：  
 1. [多代币模型](./mutli-token%20model.md)：  
 * 权益代币与费用代币分离  
 * 原生代币：Atom和Proton  
