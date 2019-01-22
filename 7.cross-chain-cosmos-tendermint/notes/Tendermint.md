@@ -3,14 +3,14 @@
 　　Tendermint是一个能够在不同机器上，安全一致复用的应用软件。Tendermint框架设计是将区块链应用与共识进行分离，其框架示意图如下图所示。Tendermint框架
 可分为Tendermint Core和ABCI (Application BlockChain Interface)两部分，其中Tendermint Core是Tendermint的核心，实现共识与数据传输；ABCI是
 Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用不同语言开发各自的区块链应用，无需考虑共识和网络传输的实现。  
-![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/tendermint%E6%A1%86%E6%9E%B6%E7%A4%BA%E6%84%8F%E5%9B%BE.png)　　
+![](./pictures/tendermint%E6%A1%86%E6%9E%B6%E7%A4%BA%E6%84%8F%E5%9B%BE.png)　　
 
 　　在本文中，会先介绍由tendermint搭建的区块链中的数据结构，再介绍tendermint框架中的tendermint core，其中包括tendermint的BPOS的共识过程、锁定机制以及PoLC等，最后将介绍tendermint core如何利用ABCI与应用进行交互。
  ## 数据结构  
  ### Block  
  
  　　在tendermint中，Block结构如下图所示。  
-   ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/block.jpg)  
+   ![](./pictures/block.jpg)  
    在`Header`中，记录当前区块基本信息的有:  
    　`Version`: 包括app version和tendermint version  
    　`ChainID`: 区块链名称  
@@ -36,13 +36,13 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
    以上是对Block区块包含数据的简要介绍，具体详见[tendermint:block](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/blockchain.md)  
    ### State  
    在Tendermint区块链中，交易执行结果、验证者、共识参数等并没有直接存储在区块block中，而是将其存储在了数据结构State，而State则存储在应用中。当tendermint core需要相应的参数时，通过ABCI接口向应用（application）获取这些信息。State的结构如下图所示：  
-   ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/state.jpg?raw=true)  
+   ![](./pictures/state.jpg?raw=true)  
    其具体参数解释可见[tendermint:state](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/state.md)  
    ### Block与State中数据联系  
    　　下图表示了Block和State中各数据之间的联系。Note:BlockID并不只有`Header`的Merkle Root。  
        
        
-   ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/%E5%8C%BA%E5%9D%97%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
+   ![](./pictures/%E5%8C%BA%E5%9D%97%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
    
  ## Tendermint Core  
  Tendermint Core主要实现共识和网络数据传输，其中共识采用拜占庭POS协议。接下来将详细介绍tendermint的共识过程。  
@@ -76,7 +76,7 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
  
  #### 共识过程  
  　　BPOS共识过程流程图可由下图表示：  
-   ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/tendermint%E7%9A%84BPOS%E8%BF%87%E7%A8%8B%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)  
+   ![](./pictures/tendermint%E7%9A%84BPOS%E8%BF%87%E7%A8%8B%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)  
    其详细步骤可见[Tendermint:byzantine-consensus-algorithm](https://github.com/tendermint/tendermint/blob/master/docs/spec/consensus/consensus.md#byzantine-consensus-algorithm)  
    以下将介绍保证BPOS的强一致性的两个概念：**锁定机制（Proof of Lock）**和**锁变化证明(Proof of Lock Change)**。   
  ##### 锁定机制PoL  
@@ -88,7 +88,7 @@ Tendermint Core与区块链应用的接口。 Tendermint支持开发者们使用
 　　 一个包含超过2/3的对应于处在某一高度某一轮次提交的特定区块或者<nil>（空区块）的prevote的集合，称为锁变化证明(Proof of Lock Change, PoLC)。PoLC相当于解开锁定机制PoL的一把钥匙，将验证者与被锁定的区块解锁，避免由于验证者被锁在不同区块上导致共识无法继续的情况。锁定机制与锁变化证明在共识过程中的作用可由下图说明，假设：  
  * 验证者1~9和X的抵押代币一致，即各验证者的投票权一致；  
  * 验证者8、9和X是恶意节点
- ![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/PoLC%E5%92%8CPoL%E7%A4%BA%E6%84%8F%E5%9B%BE.png)  
+ ![](./pictures/PoLC%E5%92%8CPoL%E7%A4%BA%E6%84%8F%E5%9B%BE.png)  
  上图中，验证者1和2在第R轮与区块A进行所锁定，所以在第R+1轮时验证者将预投票投给了区块A。同时在第R+1轮有PoLC。到了第R+2轮，验证者1和2与区块A解锁，将预投票投给了区块B。如果没有PoLC使验证者1和2对区块A进行解锁，区块B的提交将取决于恶意节点，使得共识无法进行。  
 
 
@@ -105,7 +105,7 @@ Tendermint P2P协议使用基于站对站协议（Station-to-Station Protocol）
  
  ## ABCI  
  ABCI（Application BlockChain Interface）是Tendermint与应用之间的接口，包含一系列函数，每个函数都有相应的请求和响应消息类型。Tendermint通过发送`Request`消息调用应用中的ABCI函数（methods）并获得相应的`Reponse`消息。所有消息类型都在protobuf文件中定义，这使开发者可以使用任何编程语言编写应用程序。官方给出的ABCI的示意图如下：  
-![](https://github.com/ChenypZJU/seminar/blob/master/7.cross-chain-cosmos-tendermint/notes/pictures/ABCI.png)  
+![](./pictures/ABCI.png)  
 在ABCI中，ABCI连接根据ABCI函数被分为三个独立的ABCI连接（ABCI connection）： 
 * `Consensus Connection`:由共识协议驱动，并负责区块执行  
 　　　* `InitChain`:在区块链创建时调用，向应用传送相应的初始验证者集及相应的共识参数  
