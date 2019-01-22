@@ -48,7 +48,9 @@
     出块奖励：ETH 1000*0.042=42；Proton 300*0.042=12.6   
 ```    
 假设税为2%其分配示意图为：   
-  ![](./pictures/%E4%BA%A4%E6%98%93%E5%A5%96%E5%8A%B1%E5%88%86%E9%85%8D%E7%A4%BA%E6%84%8F%E5%9B%BE.png)  
+ <div align= center>  
+  <img  src="./pictures/%E4%BA%A4%E6%98%93%E5%A5%96%E5%8A%B1%E5%88%86%E9%85%8D%E7%A4%BA%E6%84%8F%E5%9B%BE.png"/>  
+ </div>   
   
  在所以用户A获得的奖励有：  
 ```  
@@ -64,8 +66,11 @@
     用户A委托用户的出块奖励：ETH 42*70%*(100-20)%=23.52；Proton 12.6*70%*(100-20)%=7.056  
     用户B获得的奖励：ETH 23.52*40%=9.048；Proton 7.056*40%=2.8224  
 ``` 
-其出块奖励分配比例示意图如下图所示：  
-![](./pictures/%E5%87%BA%E5%9D%97%E5%A5%96%E5%8A%B1%E5%88%86%E9%85%8D%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
+其出块奖励分配比例示意图如下图所示:  
+<div align= center>  
+  <img  src="./pictures/%E5%87%BA%E5%9D%97%E5%A5%96%E5%8A%B1%E5%88%86%E9%85%8D%E7%A4%BA%E6%84%8F%E5%9B%BE.png"/>  
+ </div>  
+   
 ## refs  
 [1]. https://github.com/cosmos/cosmos/blob/master/Cosmos_Token_Model.pdf  
 [2]. https://blog.cosmos.network/economics-of-proof-of-stake-bridging-the-economic-system-of-old-into-the-new-age-of-blockchains-3f17824e91db
