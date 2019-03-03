@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+
+        <h1 id="data">
+            
+        </h1>
+        <button id="get">Get</button>
+        <br>
+        <label  class="col-lg-2 control-label">Input</label>
+        <input id="input" type="text">
+        <button id="set">Set</button>
+
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+    <script>
+       // Our future code here..
+    </script>
+    <script>
+
+        if (typeof web3 !== 'undefined') {
+
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            console.log("in")
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+
+        var contract = web3.eth.contract([
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "x",
+                "type": "uint256"
+            }
+        ],
+        "name": "set",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "get",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }
+]);
+        var contractAdd = contract.at('0x41edbcae8f9d3c039c94bb1a393e939acec02144');
+        $("#set").click(function() {
+            contractAdd.set( $("#input").val(),(error,res)=>{
+                if (error){
+                    console.log(error)
+                }
+                else{
+                    console.log(res)
+                }
+            })
+        });
+
+        $("#get").click(function() {
+            contractAdd.get((error,res)=>{
+                console.log("in",error,res);
+                if (error){
+                    console.log(error)
+                }
+                else{
+                    $("#data").html("Data is : " + res.toString());
+                    console.log(res.toString())
+                }
+            })
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
