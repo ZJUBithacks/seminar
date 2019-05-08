@@ -18,4 +18,5 @@ Disclaimer: Code implementations here are purely for educational purposes. In ea
 | 5    | 2018.11.22  | [Liang Xu](https://github.com/COAOX) | Sidechain Elements, Confidential Transaction & State Channel |
 | 6    | 2018.11.29  | [Zijie Liu](https://github.com/DankeGott) | Learning Go by Examples & Crawler System|
 | 7    | 2018.12.6  | [Yiping Chen](https://github.com/ChenypZJU) | Cosmos Cross-chain Protocols & Tendermint Consensus|
-| 8    | 2018.12.20  | [Yusheng Zhou](https://github.com/jasonzhouu) |  Decentralized Storage Systems & IPFS and Filecoin |
+| 8    | 2019.4.11  | [Wang Liu](https://github.com/jasonzhouu) |  Scalability and Layer2 & BTC Lightning Network |
+| 8    | 2019.5.8  | [Fei Zheng](https://github.com/jasonzhouu) |  Decentralized Storage Systems & IPFS and Filecoin |
