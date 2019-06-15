@@ -24,3 +24,4 @@ Disclaimer: Code implementations here are purely for educational purposes. In ea
 | 11    | 2019.5.15  | [Basile Verhulst](https://github.com/jasonzhouu) |  Machine Learning Applied on Blockchain Data |
 | 12    | 2019.5.23  | [Zepei Lin](https://github.com/jasonzhouu) |  Polkadot Cross-chain & Substrate Development |
 | 13    | 2019.5.30  | [xxxxx](https://github.com/jasonzhouu) |  Bytom BaaS & Bystack and BBFT Consensus |
+| 14    | 2019.6.13  | [Shengnan Cen](https://github.com/jasonzhouu) |  Quant basics & arbitrage |
