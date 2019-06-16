@@ -19,7 +19,7 @@ Disclaimer: Code implementations here are purely for educational purposes. In ea
 | 6    | 2018.11.29  | [Zijie Liu](https://github.com/DankeGott) | Learning Go by Examples & Crawler System|
 | 7    | 2018.12.6  | [Yiping Chen](https://github.com/ChenypZJU) | Cosmos Cross-chain Protocols & Tendermint Consensus|
 | 8    | 2018.12.20  | [Liang Xu](https://github.com/COAOX) | Learning Cryptography by Examples|
-| 9    | 2019.4.11  | [Wang Liu](https://github.com/jasonzhouu) |  Scalability and Layer2 & BTC Lightning Network |
+| 9    | 2019.4.11  | [Wan Liu](https://github.com/mircial) |  Scalability and Layer2 & BTC Lightning Network |
 | 10    | 2019.5.8  | [Fei Zheng](https://github.com/jasonzhouu) |  Decentralized Storage Systems & IPFS and Filecoin |
 | 11    | 2019.5.15  | [Basile Verhulst](https://github.com/jasonzhouu) |  Machine Learning Applied on Blockchain Data |
 | 12    | 2019.5.23  | [Zepei Lin](https://github.com/jasonzhouu) |  Polkadot Cross-chain & Substrate Development |
