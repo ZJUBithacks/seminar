@@ -25,3 +25,4 @@ Disclaimer: Code implementations here are purely for educational purposes. In ea
 | 12    | 2019.5.23  | [Zepei Lin](https://github.com/SherLzp) |  Polkadot Cross-chain & Substrate Development |
 | 13    | 2019.5.30  | [Bytom](https://github.com/Bytom) |  Bytom BaaS & Bystack and BBFT Consensus |
 | 14    | 2019.6.13  | [Shengnan Cen](https://github.com/jasonzhouu) |  Quant basics & arbitrage |
+| 15    | 2019.6.21  | [Tor Bair](https://github.com/jasonzhouu) |  Enigma, Private Computation for Blockchains |
